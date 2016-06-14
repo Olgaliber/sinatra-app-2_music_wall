@@ -7,6 +7,14 @@
  <p>
    <%= @message.content  %>
  </p>
+
+ <%=
+	 if @message.updated_at > @message.created_at
+	 	"Last updated on: #{@message.created_at}" 
+	else 
+		"Created on: #{@message.updated_at}"
+	end
+ %>
  
  <hr/>
  <a href="/messages">Back to All Messages</a>

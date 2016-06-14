@@ -1,11 +1,23 @@
-<% @messages.each do |message| %>
-	<div class="message">
-		<h3><a href="/messages/<%= message.id %>"><%= message.title %></a> <small>(by: <%= message.author %>)</small></h3>
-		<p>
-		<%= message.content %>
-		</p>
-	</div>
-<% end %>
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<hr/>
- <a href="/messages/new">Post New Song</a>
+<div class="container">
+  <div class="row">
+  	<div class="col-md-4"></div>
+  	<div class="col-md-4"><% @messages.each do |message| %>
+			<div class="message well well-sm">
+				<h3><a href="/messages/<%= message.id %>"><%= message.title %></a> <small>(by: <%= message.author %>)</small></h3>
+				<p>
+				<%= message.content %>
+				</p>
+			</div>
+		<% end %>
+	</div>
+
+  	<div class="col-md-4"></div>
+
+		<hr/>
+		 <a href="/messages/new" button type="button" class="btn btn-primary btn-lg">Post Another Song</a></button>
+
+	</div>
+</div>

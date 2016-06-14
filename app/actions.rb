@@ -18,17 +18,22 @@ get '/messages/:id' do
 end
 
 post '/messages' do
+
+	params[:updated_at] = Time.now.getutc
+	params[:created_at] = Time.now.getutc
+
    @message = Message.new(
      title:   params[:title],
      content: params[:content],
-     author:  params[:author]
+     author:  params[:author],
+     url: params[:url],
+     created_at: params[:created_at],
+     updated_at: params[:updated_at]
    )
-   @message.save
-   redirect '/messages'
- end
 
    if @message.save
      redirect '/messages'
    else
      erb :'messages/new'
    end
+end
