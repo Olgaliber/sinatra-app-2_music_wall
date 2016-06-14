@@ -17,6 +17,15 @@ get '/messages/:id' do
   erb :'messages/show'
 end
 
+get '/delete/:id' do
+  message = Message.find params[:id]
+  message.destroy
+  redirect '/messages'
+  # @messages = Message.all
+	# erb :'messages/index'
+  # erb :'messages/show'
+end
+
 post '/messages' do
 
 	params[:updated_at] = Time.now.getutc

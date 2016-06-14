@@ -2,15 +2,21 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <div class="container">
+	<div class="row">
+		<h1 class="text-center">Recently added songs</h1>
+	</div>
   <div class="row">
   	<div class="col-md-4"></div>
-  	<div class="col-md-4"><% @messages.each do |message| %>
-			<div class="message well well-sm">
-				<h3><a href="/messages/<%= message.id %>"><%= message.title %></a> <small>(by: <%= message.author %>)</small></h3>
-				<p>
-				<%= message.content %>
-				</p>
-			</div>
+  	<div class="col-md-4">
+  		<% @messages.each do |message| %>
+				<div class="message well well-sm">
+					<h3><a href="/messages/<%= message.id %>"><%= message.title %></a> <small>(by: <%= message.author %>)</small></h3>
+					<p>
+					<%= message.content %>
+
+					<a class="btn btn-info pull-right" href="/delete/<%= message.id %>" role="button">delete</a>
+					</p>
+				</div>
 		<% end %>
 	</div>
 
