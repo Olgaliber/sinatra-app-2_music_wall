@@ -16,6 +16,7 @@ group :development, :test do
   gem 'pry'
   gem 'shotgun'
   gem 'sqlite3'
+  gem 'bcrypt'
 end
 
 # bundle install --without test --without development

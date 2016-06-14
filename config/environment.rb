@@ -1,3 +1,4 @@
+require 'bcrypt'
 require 'rubygems'
 require 'bundler/setup'
 

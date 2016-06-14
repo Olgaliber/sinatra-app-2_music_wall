@@ -1,6 +1,18 @@
+@valid_users = {
+  olga => "juice456"
+  jack => "cocochee"
+  buddy => "bold-eagle"
+}
+
+before do 
+  cookies[:page_views] ? cookies[:page_views] = cookies[:page_views].to_i + 1 :cookies[:page_views]
+end
+
+
 # Homepage (Root path)
 get '/' do
-  erb :index
+   erb :index
+  #erb :'messages/login'
 end
 
 get '/messages' do
@@ -15,6 +27,20 @@ end
 get '/messages/:id' do
   @message = Message.find params[:id]
   erb :'messages/show'
+end
+
+get '/login' do 
+  erb :'messages/login'
+end
+
+post '/login' do
+  erb :'messages/new'
+  if valid_users[params[:username].to_sym] == params [:password]
+    cookies[:username] = [params[:username]
+  else 
+    #flash message here
+    redirect_to "/login"
+  end
 end
 
 get '/delete/:id' do
