@@ -49,7 +49,7 @@ end
 post '/login' do
   erb :'messages/new'
   user = User.find_by(email: params[:email])
-  if user.password == params[:password]
+  if user.password_hash == params[:password]
     session[:user_id] = user.id
     redirect '/messages'
   else 
@@ -58,13 +58,20 @@ post '/login' do
   end
 end
 
-get '/delete/:id' do
-  message = Message.find params[:id]
-  message.destroy
-  redirect '/messages'
-  # @messages = Message.all
-	# erb :'messages/index'
-  # erb :'messages/show'
+post '/signup' do
+  erb :'messages/new'
+  
+  @user = User.new(
+    name:   params[:name],
+    email: params[:email],
+    password_hash:  params[:password],
+  )
+  
+  if @user.save
+    redirect '/messages'
+  else
+    erb :'/'
+  end
 end
 
 post '/messages' do
