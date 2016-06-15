@@ -1,9 +1,15 @@
  <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+<style>
+	.margin {
+	    margin-bottom: 50px;
+	}
+</style>
+
 <div class="container">
 	<div class="row">
-		<h1 class="text-center">Recently added songs</h1>
+		<h1 class="margin text-center">Recently added songs</h1>
 	</div>
   <div class="row">
   	<div class="col-md-4"></div>
@@ -14,16 +20,18 @@
 					<p>
 					<%= message.content %>
 
-					<a class="btn btn-info pull-right" href="/delete/<%= message.id %>" role="button">delete</a>
+					<a class="btn btn-info pull-right btn-sm" href="/delete/<%= message.id %>" role="button">delete</a>
+					<a class="btn btn-warning pull-right btn-sm" href="/upvote/<%= message.id  %>">like <span class="badge"><%= message.upvote  %></span></a>
+					<!--<a class="btn btn-warning pull-right btn-sm" href="/upvote/<%= message.id %>" role="button">like</a>-->
 					</p>
 				</div>
-		<% end %>
-	</div>
+			<% end %>
+	  </div>
 
-  	<div class="col-md-4"></div>
+  	<div class="col-md-4">
+  		<a href="/messages/new" button type="button" class="btn btn-primary btn-lg">Post Another Song</a></button>
 
-		<hr/>
-		 <a href="/messages/new" button type="button" class="btn btn-primary btn-lg">Post Another Song</a></button>
-
+  	</div>
 	</div>
 </div>
+

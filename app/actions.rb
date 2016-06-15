@@ -11,7 +11,7 @@ get '/' do
 end
 
 get '/messages' do
-	@messages = Message.all
+	@messages = Message.order(upvote: :desc)
 	erb :'messages/index'
 end
 
@@ -19,21 +19,31 @@ get '/messages/new' do
    erb :'messages/new'
 end
 
+get '/signup' do 
+  erb :'messages/signup'
+end
+
 get '/messages/:id' do
   @message = Message.find params[:id]
+  if @message.upvote == nil
+    @message.upvote = 0
+  end 
   erb :'messages/show'
 end
 
-get '/login' do 
-  erb :'messages/login'
+get '/upvote/:id' do
+  @message = Message.find params[:id]
+  # message.destroy
+  # redirect '/messages'
+  if @message.upvote == nil
+    @message.upvote = 0
+  end 
+
+  @message.upvote += 1
+  @message.save!
+
+  redirect '/messages'
 end
-
-#creare Users signup for an account (email, password)
-
-
-#create Users can login
-# create Users can logout
-
 
 
 post '/login' do
@@ -44,7 +54,7 @@ post '/login' do
     redirect '/messages'
   else 
     #flash message here
-    redirect_to "/login"
+    redirect '/login'
   end
 end
 
@@ -68,7 +78,8 @@ post '/messages' do
      author:  params[:author],
      url: params[:url],
      created_at: params[:created_at],
-     updated_at: params[:updated_at]
+     updated_at: params[:updated_at],
+     upvote: 0
    )
 
    if @message.save

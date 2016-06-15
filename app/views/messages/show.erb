@@ -1,20 +1,39 @@
-<h1><%= @message.title %></h1>
- 
- <p>
-   Author: <%= @message.author %>
- </p>
- 
- <p>
-   <%= @message.content  %>
- </p>
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
- <%=
-	 if @message.updated_at > @message.created_at
-	 	"Last updated on: #{@message.created_at}" 
-	else 
-		"Created on: #{@message.updated_at}"
-	end
- %>
- 
- <hr/>
- <a href="/messages">Back to All Messages</a>
+<div class="container">
+	<div class="row">
+
+	  <div class="col-md-4 well well-lg">
+	  	<h1><%= @message.title %></h1>
+	  	 
+	  	 <p>
+	  	   Author: <%= @message.author %>
+	  	 </p>
+	  	 
+	  	 <p>
+	  	   <%= @message.content  %>
+	  	 </p>
+
+	  	 <p>
+
+	  	 	<a class="btn btn-warning" href="#">votes <span class="badge"><%= @message.upvote  %></span></a>
+	  	 </p>
+
+	  	 <%=
+	  		 if @message.updated_at > @message.created_at
+	  		 	"Last updated on: #{@message.created_at}" 
+	  		else 
+	  			"Created on: #{@message.updated_at}"
+	  		end
+	  	 %>
+	  	 
+	  	 <hr/>
+	  	 <a href="/messages">Back to All Messages</a>
+	  	</div>
+
+	  <div class="col-md-4"></div>
+	  <div class="col-md-4"></div>
+	</div>
+</div>
+
