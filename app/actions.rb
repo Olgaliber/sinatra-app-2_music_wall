@@ -1,8 +1,3 @@
-@valid_users = {
-  olga => "juice456"
-  jack => "cocochee"
-  buddy => "bold-eagle"
-}
 
 before do 
   cookies[:page_views] ? cookies[:page_views] = cookies[:page_views].to_i + 1 :cookies[:page_views]
@@ -33,10 +28,20 @@ get '/login' do
   erb :'messages/login'
 end
 
+#creare Users signup for an account (email, password)
+
+
+#create Users can login
+# create Users can logout
+
+
+
 post '/login' do
   erb :'messages/new'
-  if valid_users[params[:username].to_sym] == params [:password]
-    cookies[:username] = [params[:username]
+  user = User.find_by(email: params[:email])
+  if user.password == params[:password]
+    session[:user_id] = user.id
+    redirect '/messages'
   else 
     #flash message here
     redirect_to "/login"
